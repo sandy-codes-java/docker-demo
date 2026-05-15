@@ -17,7 +17,6 @@ public class DockerController {
 
     @GetMapping("/hello-world")
     public String helloWorld(){
-        System.out.println("hello - i am log in controller");
         return "hello-world from docker project";
     }
 
