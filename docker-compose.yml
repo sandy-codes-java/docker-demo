@@ -2,10 +2,16 @@ version: "3.8"
 
 services:
 
+
   app:
     build: .
     ports:
       - "8080:8080"
+    networks:
+      - basic-network
+    depends_on:
+      mysql:
+        condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/assignment_schema
       SPRING_DATASOURCE_USERNAME: root
@@ -18,3 +24,9 @@ services:
       MYSQL_DATABASE: assignment_schema
     ports:
       - "3307:3306"
+    networks:
+      - basic-network
+
+networks:
+  basic-network:
+    driver: bridge
